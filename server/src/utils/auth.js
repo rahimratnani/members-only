@@ -8,15 +8,24 @@ const newToken = (user) => {
 };
 
 const verifyToken = (token) => {
+  return new Promise((resolve, reject) => {
+    jwt.verify(token, process.env.JWT_SECRET, (error, payload) => {
+      if (error) return reject(error);
+
+      resolve(payload);
+    });
+  });
+};
+
+const checkPassword = async (passwordHash, password) => {
   try {
-    const payload = jwt.verify(token, process.env.JWT_SECRET);
-    return payload;
+    return await bcrypt.compare(password, passwordHash);
   } catch (error) {
-    return error;
+    throw new Error(error);
   }
 };
 
-export const signup = async (req, res) => {
+export const signup = async (req, res, next) => {
   const { name, email, password } = req.body;
 
   if (!req.body.name || !req.body.email || !req.body.password) {
@@ -29,9 +38,8 @@ export const signup = async (req, res) => {
     const oldUser = await User.findOne({ email });
 
     if (oldUser) {
-      return res
-        .status(409)
-        .json({ message: 'User already exists. Please login.' });
+      res.status(409);
+      throw new Error('User already exists. Please login.');
     }
 
     const encryptedPassword = await bcrypt.hash(password, 10);
@@ -50,6 +58,22 @@ export const signup = async (req, res) => {
     return res.status(201).json({ token, id: user.id });
   } catch (error) {
     console.log(error);
-    return res.status(400).end();
+    next(error);
+  }
+};
+
+const signin = async (req, res) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res.status(400).send({ message: 'Email and password are required' });
+  }
+
+  try {
+    const user = await User.findOne({ email });
+
+    return res.status(201).json({ message: 'hello' });
+  } catch (error) {
+    console.log(error);
   }
 };
