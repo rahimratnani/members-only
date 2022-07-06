@@ -57,23 +57,41 @@ export const signup = async (req, res, next) => {
     console.log(token);
     return res.status(201).json({ token, id: user.id });
   } catch (error) {
-    console.log(error);
+    console.error(error);
     next(error);
   }
 };
 
-const signin = async (req, res) => {
+export const signin = async (req, res, next) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    return res.status(400).send({ message: 'Email and password are required' });
+    return res
+      .status(400)
+      .send({ message: 'Email and password are required.' });
   }
 
   try {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email: email.toLowerCase() });
 
-    return res.status(201).json({ message: 'hello' });
+    if (!user) {
+      return res.status(401).send({ message: 'Not authorized.' });
+    }
+
+    const match = await checkPassword(user.password, password);
+
+    if (!match) {
+      return res.status(401).send({ message: 'Not authorized.' });
+    }
+
+    const token = newToken(user);
+
+    return res.status(201).json({
+      token,
+      id: user.id,
+    });
   } catch (error) {
-    console.log(error);
+    console.error(error);
+    next(error);
   }
 };
