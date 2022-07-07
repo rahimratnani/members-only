@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect } from 'react';
 import Navbar from './components/Navbar/index.js';
+import Messages from './pages/Messages/index.js';
 
 function App() {
   useEffect(() => {
@@ -34,7 +35,7 @@ function App() {
   return (
     <div>
       <Navbar />
-      <h1>Hello</h1>
+      <Messages />
     </div>
   );
 }
