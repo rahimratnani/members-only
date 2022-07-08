@@ -38,8 +38,9 @@ export const signup = async (req, res, next) => {
     const oldUser = await User.findOne({ email });
 
     if (oldUser) {
-      res.status(409);
-      throw new Error('User already exists. Please login.');
+      return res
+        .status(409)
+        .json({ message: 'User already exists. Please login.' });
     }
 
     const encryptedPassword = await bcrypt.hash(password, 10);
@@ -54,7 +55,6 @@ export const signup = async (req, res, next) => {
     // Create token
     const token = newToken(user);
 
-    console.log(token);
     return res.status(201).json({ token, id: user.id });
   } catch (error) {
     console.error(error);
