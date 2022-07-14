@@ -24,7 +24,7 @@ export default function LogInModal({ open, close }) {
 
     setTimeout(() => {
       resetState();
-    }, 200);
+    }, 500);
   };
 
   const handleSubmit = async (e) => {
@@ -47,10 +47,26 @@ export default function LogInModal({ open, close }) {
 
       console.log(res);
 
-      /* localStorage.setItem('id', res.data.id);
-      localStorage.setItem('token', res.data.token); */
+      const {
+        token,
+        _id,
+        name,
+        email: userEmail,
+        is_admin,
+        is_member,
+      } = res.data;
 
-      setAuth((prev) => ({ ...prev, isAuth: true }));
+      localStorage.setItem('token', token);
+
+      setAuth((prev) => ({
+        ...prev,
+        isAuth: true,
+        name,
+        email: userEmail,
+        is_member,
+        is_admin,
+        id: _id,
+      }));
 
       setLoginSuccess(true);
 

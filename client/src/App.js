@@ -4,34 +4,24 @@ import Navbar from './components/Navbar/index.js';
 import Messages from './pages/Messages/index.js';
 
 function App() {
-  useEffect(() => {
-    // signup
-    /* axios
-      .post('http://localhost:3001/signup', {
-        email: 'example@gmail.com',
-        name: 'rahim',
-        password: '123',
-      })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((error) => {
-        console.log('Error: ', error.response);
-      }); */
-    // signin
-    /* axios
-      .post('http://localhost:3001/signin', {
-        email: 'example@gmail.com',
-        password: '123',
-      })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((error) => {
-        console.log('Error: ', error.response);
-      }); */
-    // ========== //
-  }, []);
+  async function temp() {
+    const token = localStorage.getItem('token');
+
+    try {
+      const res = await axios.get(
+        `${process.env.REACT_APP_SERVER_URL}/api/users`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      console.log(res);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  temp();
   return (
     <div>
       <Navbar />

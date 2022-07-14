@@ -9,7 +9,7 @@ import cors from 'cors';
 
 import userRouter from './resources/user/user.router.js';
 import messageRouter from './resources/message/message.router.js';
-import { signup, signin } from './utils/auth.js';
+import { signup, signin, protect } from './utils/auth.js';
 
 const app = express();
 
@@ -25,10 +25,10 @@ app.use(helmet());
 app.use(compression()); // Compress all routes
 
 // Routes
-app.use('/api/users', userRouter);
-app.use('/api/messages', messageRouter);
 app.post('/signup', signup);
 app.post('/signin', signin);
+app.use('/api/users', protect, userRouter);
+app.use('/api/messages', protect, messageRouter);
 
 app.get('/', (req, res) => {
   res.status(200).json({ message: 'Express Boilerplate' });

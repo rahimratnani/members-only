@@ -56,12 +56,25 @@ export default function SignUpModal({ open, close }) {
 
       console.log(res);
 
-      localStorage.setItem('id', res.data.id);
-      localStorage.setItem('token', res.data.token);
+      const {
+        token,
+        _id,
+        name,
+        email: userEmail,
+        is_admin,
+        is_member,
+      } = res.data;
+
+      localStorage.setItem('token', token);
 
       setAuth((prev) => ({
         ...prev,
         isAuth: true,
+        name,
+        email: userEmail,
+        is_member,
+        is_admin,
+        id: _id,
       }));
 
       setSignupSuccess(true);

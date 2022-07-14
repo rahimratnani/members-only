@@ -55,9 +55,16 @@ export const signup = async (req, res, next) => {
     // Create token
     const token = newToken(user);
 
-    return res.status(201).json({ token, id: user.id });
+    const updatedUser = user.toObject();
+    delete updatedUser.password;
+
+    return res.status(201).json({
+      token,
+      ...updatedUser,
+    });
   } catch (error) {
     console.error(error);
+    res.status(500);
     next(error);
   }
 };
@@ -86,12 +93,49 @@ export const signin = async (req, res, next) => {
 
     const token = newToken(user);
 
+    const updatedUser = user.toObject();
+    delete updatedUser.password;
+
     return res.status(201).json({
       token,
-      id: user.id,
+      ...updatedUser,
     });
   } catch (error) {
     console.error(error);
+    res.status(500);
+    next(error);
+  }
+};
+
+export const protect = async (req, res, next) => {
+  if (!req.headers.authorization) {
+    return res.status(401).send({ message: 'Not authorized.' });
+  }
+
+  let token = req.headers.authorization.split('Bearer ')[1];
+
+  if (!token) {
+    return res.status(401).send({ message: 'Not authorized.' });
+  }
+
+  try {
+    const payload = await verifyToken(token);
+
+    const user = await User.findById(payload.id)
+      .select('-password')
+      .lean()
+      .exec();
+
+    if (!user) {
+      return res.status(401).send({ message: 'Not authorized.' });
+    }
+
+    req.user = user;
+
+    next();
+  } catch (error) {
+    console.error(error);
+    res.status(500);
     next(error);
   }
 };
