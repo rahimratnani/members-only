@@ -4,13 +4,13 @@ export const ModalContext = createContext(null);
 
 export default function ModalContextProvider({ children }) {
   const [signupModal, setSignupModal] = useState(false);
-  const [loginModal, setloginModal] = useState(false);
+  const [loginModal, setLoginModal] = useState(false);
 
   const value = {
     signupModal,
     setSignupModal,
     loginModal,
-    setloginModal,
+    setLoginModal,
   };
 
   return (
