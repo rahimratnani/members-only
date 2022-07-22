@@ -28,7 +28,7 @@ app.use(compression()); // Compress all routes
 app.post('/signup', signup);
 app.post('/signin', signin);
 app.use('/api/users', protect, userRouter);
-app.use('/api/messages', protect, messageRouter);
+app.use('/api/messages', messageRouter);
 
 app.get('/', (req, res) => {
   res.status(200).json({ message: 'Express Boilerplate' });

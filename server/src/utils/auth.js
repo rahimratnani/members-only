@@ -75,20 +75,20 @@ export const signin = async (req, res, next) => {
   if (!email || !password) {
     return res
       .status(400)
-      .send({ message: 'Email and password are required.' });
+      .json({ message: 'Email and password are required.' });
   }
 
   try {
     const user = await User.findOne({ email: email.toLowerCase() });
 
     if (!user) {
-      return res.status(401).send({ message: 'Not authorized.' });
+      return res.status(401).json({ message: 'Not authorized.' });
     }
 
     const match = await checkPassword(user.password, password);
 
     if (!match) {
-      return res.status(401).send({ message: 'Not authorized.' });
+      return res.status(401).json({ message: 'Not authorized.' });
     }
 
     const token = newToken(user);
@@ -109,13 +109,13 @@ export const signin = async (req, res, next) => {
 
 export const protect = async (req, res, next) => {
   if (!req.headers.authorization) {
-    return res.status(401).send({ message: 'Not authorized.' });
+    return res.status(401).json({ message: 'Not authorized.' });
   }
 
-  let token = req.headers.authorization.split('Bearer ')[1];
+  const token = req.headers.authorization.split(' ')[1];
 
-  if (!token) {
-    return res.status(401).send({ message: 'Not authorized.' });
+  if (!token || token.length < 10) {
+    return res.status(401).json({ message: 'Not authorized.' });
   }
 
   try {
@@ -127,7 +127,7 @@ export const protect = async (req, res, next) => {
       .exec();
 
     if (!user) {
-      return res.status(401).send({ message: 'Not authorized.' });
+      return res.status(401).json({ message: 'Not authorized.' });
     }
 
     req.user = user;

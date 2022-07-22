@@ -1,3 +1,3 @@
 export const me = (req, res) => {
-  res.status(200).json({ data: req.user });
+  res.status(200).json({ user: req.user });
 };

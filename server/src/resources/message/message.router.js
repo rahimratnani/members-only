@@ -12,7 +12,13 @@ const router = Router();
 /* 
 /api/messages
 */
-router.route('/').get(getMany).post(createOne);
+router
+  .route('/')
+  .get((req, res, next) => {
+    req.data = { message: `I'm attached` };
+    next();
+  }, getMany)
+  .post(createOne);
 
 /* 
 /api/messages/:id

@@ -1,12 +1,17 @@
 import { useContext } from 'react';
 import { ModalContext } from '../../context/modalContext.js';
 import { UserContext } from '../../context/userContext.js';
+import useLogout from '../../hooks/useLogout.js';
 
 export default function Navbar() {
   const { setSignupModal, setLoginModal } = useContext(ModalContext);
+
+  const logout = useLogout();
+
   const {
     auth: { isAuth },
   } = useContext(UserContext);
+
   return (
     <nav className="bg-gray-200 flex justify-between h-10 items-center px-4">
       <h1 className="text-2xl font-bold">Members Only</h1>
@@ -15,7 +20,13 @@ export default function Navbar() {
         <li>
           <a href="##">Messages</a>
         </li>
-        {isAuth ? null : (
+        {isAuth ? (
+          <li>
+            <button type="button" onClick={() => logout()}>
+              Log Out
+            </button>
+          </li>
+        ) : (
           <>
             <li>
               <button type="button" onClick={() => setLoginModal(true)}>

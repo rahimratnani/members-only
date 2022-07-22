@@ -1,7 +1,7 @@
 import Modal from '../Modal/index.js';
 import { Dialog } from '@headlessui/react';
 import { useState, useContext } from 'react';
-import axios from 'axios';
+import axios from '../../lib/axios.js';
 import { UserContext } from '../../context/userContext.js';
 
 export default function LogInModal({ open, close }) {
@@ -37,13 +37,10 @@ export default function LogInModal({ open, close }) {
     try {
       setLoading(true);
 
-      const res = await axios.post(
-        `${process.env.REACT_APP_SERVER_URL}/signin`,
-        {
-          email,
-          password,
-        }
-      );
+      const res = await axios.post('/signin', {
+        email,
+        password,
+      });
 
       console.log(res);
 

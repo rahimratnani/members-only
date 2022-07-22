@@ -1,7 +1,7 @@
 import Modal from '../Modal/index.js';
 import { Dialog } from '@headlessui/react';
-import { useState, useEffect, useContext } from 'react';
-import axios from 'axios';
+import { useState, useContext } from 'react';
+import axios from '../../lib/axios.js';
 import { UserContext } from '../../context/userContext.js';
 
 export default function SignUpModal({ open, close }) {
@@ -45,14 +45,11 @@ export default function SignUpModal({ open, close }) {
     try {
       setLoading(true);
 
-      const res = await axios.post(
-        `${process.env.REACT_APP_SERVER_URL}/signup`,
-        {
-          email,
-          name: userName,
-          password,
-        }
-      );
+      const res = await axios.post('/signup', {
+        email,
+        name: userName,
+        password,
+      });
 
       console.log(res);
 
