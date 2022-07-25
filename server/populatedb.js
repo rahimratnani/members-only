@@ -164,14 +164,14 @@ const createMessages = async (usersArray) => {
   return await Promise.all(promises);
 };
 
-// Drop existing collections
-await mongoose.connection.db.dropCollection('users');
-console.log('Collection users is dropped.');
-
-await mongoose.connection.db.dropCollection('messages');
-console.log('Collection messages is dropped.');
-
 const seedDb = async () => {
+  // Drop existing collections
+  await mongoose.connection.db.dropCollection('users');
+  console.log('Collection users is dropped.');
+
+  await mongoose.connection.db.dropCollection('messages');
+  console.log('Collection messages is dropped.');
+
   const usersArray = await createUsers();
   console.log('Users created');
 

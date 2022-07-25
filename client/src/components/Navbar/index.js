@@ -18,7 +18,7 @@ export default function Navbar() {
 
       <ul className="flex gap-4">
         <li>
-          <a href="##">Messages</a>
+          <a href="##">New Message</a>
         </li>
         {isAuth ? (
           <li>
