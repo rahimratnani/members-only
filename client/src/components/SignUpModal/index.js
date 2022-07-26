@@ -85,14 +85,6 @@ export default function SignUpModal({ open, close }) {
     }
   };
 
-  // console.log(process.env.REACT_APP_SERVER_URL);
-
-  /* useEffect(() => {
-    console.log('Mounted');
-
-    return () => console.log('Unmounted');
-  }, []); */
-
   return (
     <Modal open={open} onClose={handleOnClose}>
       <div className="w-96 bg-white py-3 px-4">

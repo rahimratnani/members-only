@@ -1,5 +1,6 @@
 import SignUpModal from '../../components/SignUpModal/index.js';
 import LogInModal from '../../components/LogInModal/index.js';
+import MembershipModal from '../../components/MembershipModal/index.js';
 import { useContext, useState, useEffect } from 'react';
 import { ModalContext } from '../../context/modalContext.js';
 import { UserContext } from '../../context/userContext.js';
@@ -9,8 +10,14 @@ import Message from '../../components/Message/index.js';
 import Pagination from '../../components/Pagination/index.js';
 
 export default function Messages() {
-  const { signupModal, setSignupModal, loginModal, setLoginModal } =
-    useContext(ModalContext);
+  const {
+    signupModal,
+    setSignupModal,
+    loginModal,
+    setLoginModal,
+    membershipModal,
+    setMembershipModal,
+  } = useContext(ModalContext);
 
   const { auth } = useContext(UserContext);
 
@@ -68,6 +75,7 @@ export default function Messages() {
 
       <SignUpModal open={signupModal} close={setSignupModal} />
       <LogInModal open={loginModal} close={setLoginModal} />
+      <MembershipModal open={membershipModal} close={setMembershipModal} />
     </>
   );
 }
