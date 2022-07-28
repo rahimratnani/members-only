@@ -1,5 +1,5 @@
 import { useEffect, useContext, useState } from 'react';
-import Navbar from './components/Navbar/index.js';
+import Navbar from './components/Navbar.js';
 import Messages from './pages/Messages/index.js';
 import Spinner from './components/elements/Spinner.js';
 import axios from './lib/axios.js';

@@ -1,4 +1,4 @@
-export default function ChevronLeft(props) {
+export default function MenuIcon(props) {
   return (
     <svg
       stroke="currentColor"
@@ -12,7 +12,7 @@ export default function ChevronLeft(props) {
     >
       <path
         fillRule="evenodd"
-        d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+        d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
         clipRule="evenodd"
       ></path>
     </svg>

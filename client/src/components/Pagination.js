@@ -1,16 +1,16 @@
 import ReactPaginate from 'react-paginate';
-import ChevronLeft from '../icons/ChevronLeft.js';
-import ChevronRight from '../icons/ChevronRight.js';
+import ChevronLeftIcon from '../assets/icons/ChevronLeftIcon.js';
+import ChevronRightIcon from '../assets/icons/ChevronRightIcon.js';
 
 const Previous = () => (
   <button className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-    <ChevronLeft className="h-5 w-5" />
+    <ChevronLeftIcon className="h-5 w-5" />
   </button>
 );
 
 const Next = () => (
   <button className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-    <ChevronRight className="h-5 w-5" />
+    <ChevronRightIcon className="h-5 w-5" />
   </button>
 );
 
