@@ -1,13 +1,14 @@
-import SignUpModal from '../../components/SignUpModal/index.js';
-import LogInModal from '../../components/LogInModal/index.js';
-import MembershipModal from '../../components/MembershipModal/index.js';
+import SignUpModal from '../../components/SignUpModal.js';
+import LogInModal from '../../components/LogInModal.js';
+import MembershipModal from '../../components/MembershipModal.js';
 import { useContext, useState, useEffect } from 'react';
-import { ModalContext } from '../../context/modalContext.js';
-import { UserContext } from '../../context/userContext.js';
+import { ModalContext } from '../../context/ModalContext.js';
+import { UserContext } from '../../context/UserContext.js';
 import axios from '../../lib/axios.js';
 import Spinner from './../../components/elements/Spinner.js';
-import Message from '../../components/Message/index.js';
+import Message from './Message.js';
 import Pagination from '../../components/Pagination.js';
+import Header from './Header.js';
 
 export default function Messages() {
   const {
@@ -59,7 +60,7 @@ export default function Messages() {
 
   return (
     <>
-      <h1 className="font-bold text-2xl text-center">Messages</h1>
+      <Header />
 
       {loading ? (
         <Spinner />

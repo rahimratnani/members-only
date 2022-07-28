@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import { ModalContext } from '../context/modalContext.js';
-import { UserContext } from '../context/userContext.js';
+import { ModalContext } from '../context/ModalContext.js';
+import { UserContext } from '../context/UserContext.js';
 import useLogout from '../hooks/useLogout.js';
 import { Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
@@ -18,7 +18,7 @@ export default function Navbar() {
   const logout = useLogout();
 
   return (
-    <Disclosure as="nav" className="bg-white shadow">
+    <Disclosure as="nav" className="bg-white border border-navBorder relative">
       {({ open }) => (
         <>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -42,8 +42,8 @@ export default function Navbar() {
                   </div>
                 ) : null}
                 <div className="flex-shrink-0 flex items-center">
-                  <h1 className="font-bold text-2xl text-gray-900">
-                    <span className="text-indigo-500">Members</span> Only
+                  <h1 className="font-bold text-2xl text-gray-700">
+                    <span className="text-indigo-500">Members</span>Only
                   </h1>
                 </div>
               </div>

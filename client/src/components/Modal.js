@@ -1,5 +1,5 @@
 import { Transition, Dialog } from '@headlessui/react';
-import { Fragment, useEffect } from 'react';
+import { Fragment } from 'react';
 
 export default function Modal({ open, onClose, children }) {
   return (

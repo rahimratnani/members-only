@@ -3,7 +3,7 @@ import Navbar from './components/Navbar.js';
 import Messages from './pages/Messages/index.js';
 import Spinner from './components/elements/Spinner.js';
 import axios from './lib/axios.js';
-import { UserContext } from './context/userContext.js';
+import { UserContext } from './context/UserContext.js';
 
 function App() {
   const [loading, setLoading] = useState(true);

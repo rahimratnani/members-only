@@ -1,8 +1,8 @@
-import Modal from '../Modal/index.js';
+import Modal from './Modal.js';
 import { Dialog } from '@headlessui/react';
 import { useState, useContext } from 'react';
-import axios from '../../lib/axios.js';
-import { UserContext } from '../../context/userContext.js';
+import axios from '../lib/axios.js';
+import { UserContext } from '../context/UserContext.js';
 
 export default function MembershipModal({ open, close }) {
   const { auth, setAuth } = useContext(UserContext);

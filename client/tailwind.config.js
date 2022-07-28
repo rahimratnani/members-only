@@ -7,8 +7,7 @@ module.exports = {
         poppins: ['Poppins', 'sans-serif'],
       },
       colors: {
-        primary: '#294cfe',
-        // primary: '#01d679',
+        navBorder: 'rgba(0,0,0,.08)',
       },
     },
   },
