@@ -4,6 +4,7 @@ import Messages from './pages/Messages/index.js';
 import Spinner from './components/elements/Spinner.js';
 import axios from './lib/axios.js';
 import { UserContext } from './context/UserContext.js';
+import Footer from './components/Footer.js';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -43,30 +44,13 @@ function App() {
     }
   }, []);
 
-  async function temp() {
-    const token = localStorage.getItem('token');
-
-    try {
-      const res = await axios.get(
-        `${process.env.REACT_APP_SERVER_URL}/api/users`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
-
-      console.log(res);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  // temp();
   return loading ? (
     <Spinner />
   ) : (
     <div>
       <Navbar />
       <Messages />
+      <Footer />
     </div>
   );
 }

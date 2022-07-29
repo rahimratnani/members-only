@@ -31,4 +31,12 @@
 
 :root {
   font-family: 'Poppins', sans-serif;
+  /* Footer */
+  position: relative;
+  min-height: 100%;
+}
+
+/* Footer */
+#root {
+  margin-bottom: 50px;
 }

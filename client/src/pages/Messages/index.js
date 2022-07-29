@@ -59,13 +59,19 @@ export default function Messages() {
   ));
 
   return (
-    <>
+    <div className="relative min-h-screen pb-[90px] sm:pb-[110px]">
       <Header />
 
       {loading ? (
         <Spinner />
       ) : (
-        <main className="mt-7 w-3/4 mx-auto">{messagesComponents}</main>
+        <main className="bg-white w-full">
+          <div className="max-w-7xl space-y-8 mt-12 mx-auto px-4 sm:px-6 lg:px-8">
+            {/* <Message message={messages[0]} auth={auth} /> */}
+            {/* <Message message={messages[1]} auth={auth} /> */}
+            {messagesComponents}
+          </div>
+        </main>
       )}
 
       <Pagination
@@ -77,6 +83,6 @@ export default function Messages() {
       <SignUpModal open={signupModal} close={setSignupModal} />
       <LogInModal open={loginModal} close={setLoginModal} />
       <MembershipModal open={membershipModal} close={setMembershipModal} />
-    </>
+    </div>
   );
 }
