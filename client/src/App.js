@@ -45,7 +45,9 @@ function App() {
   }, []);
 
   return loading ? (
-    <Spinner />
+    <div className="flex justify-center items-center absolute inset-0 m-auto">
+      <Spinner />
+    </div>
   ) : (
     <div>
       <Navbar />

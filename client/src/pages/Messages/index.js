@@ -63,7 +63,9 @@ export default function Messages() {
       <Header />
 
       {loading ? (
-        <Spinner />
+        <div className="flex justify-center items-center absolute inset-0 m-auto">
+          <Spinner />
+        </div>
       ) : (
         <main className="bg-white w-full">
           <div className="max-w-7xl space-y-8 mt-12 mx-auto px-4 sm:px-6 lg:px-8">

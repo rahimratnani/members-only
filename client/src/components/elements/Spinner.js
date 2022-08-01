@@ -1,7 +1,5 @@
-export default function Spinner() {
-  return (
-    <div className="h-screen w-screen flex justify-center items-center">
-      <p>Loading...</p>
-    </div>
-  );
+import { FadeLoader } from 'react-spinners';
+
+export default function Spinner(props) {
+  return <FadeLoader color="#6366f1" {...props} />;
 }
