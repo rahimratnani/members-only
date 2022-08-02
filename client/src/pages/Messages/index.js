@@ -1,4 +1,4 @@
-import SignUpModal from '../../components/SignUpModal.js';
+import SignUpModal from '../../components/SignUpModal/index.js';
 import LogInModal from '../../components/LogInModal/index.js';
 import MembershipModal from '../../components/MembershipModal.js';
 import { useContext, useState, useEffect } from 'react';

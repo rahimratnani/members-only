@@ -5,44 +5,48 @@ import Message from './src/resources/message/message.model.js';
 
 await mongoose.connect(process.env.DB_URL);
 
+// Test@123
+const COMMON_PASSWORD =
+  '$2a$10$AavMM60KdTNEacYQI.vWYeOwKVqDimBiAxfU/S3EHxdLd0srJSBfm';
+
 const users = [
   {
     name: 'rahim',
     email: 'rahim@gmail.com',
-    password: '$2a$10$vZ48Ggj7Ok2rmQndDOdIque2/TK/M65pBbVS0P5wgqs6R.55XZZMm', // test123
+    password: COMMON_PASSWORD,
     is_member: true,
     is_admin: true,
   },
   {
     name: 'ross',
     email: 'ross@gmail.com',
-    password: '$2a$10$vZ48Ggj7Ok2rmQndDOdIque2/TK/M65pBbVS0P5wgqs6R.55XZZMm',
+    password: COMMON_PASSWORD,
     is_member: true,
   },
   {
     name: 'rachel',
     email: 'rachel@gmail.com',
-    password: '$2a$10$vZ48Ggj7Ok2rmQndDOdIque2/TK/M65pBbVS0P5wgqs6R.55XZZMm',
+    password: COMMON_PASSWORD,
   },
   {
     name: 'monica',
     email: 'monica@gmail.com',
-    password: '$2a$10$vZ48Ggj7Ok2rmQndDOdIque2/TK/M65pBbVS0P5wgqs6R.55XZZMm',
+    password: COMMON_PASSWORD,
   },
   {
     name: 'chandler',
     email: 'chandler@gmail.com',
-    password: '$2a$10$vZ48Ggj7Ok2rmQndDOdIque2/TK/M65pBbVS0P5wgqs6R.55XZZMm',
+    password: COMMON_PASSWORD,
   },
   {
     name: 'joey',
     email: 'joey@gmail.com',
-    password: '$2a$10$vZ48Ggj7Ok2rmQndDOdIque2/TK/M65pBbVS0P5wgqs6R.55XZZMm',
+    password: COMMON_PASSWORD,
   },
   {
     name: 'phoebe',
     email: 'phoebe@gmail.com',
-    password: '$2a$10$vZ48Ggj7Ok2rmQndDOdIque2/TK/M65pBbVS0P5wgqs6R.55XZZMm',
+    password: COMMON_PASSWORD,
   },
 ];
 

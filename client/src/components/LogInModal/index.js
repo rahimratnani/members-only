@@ -18,6 +18,7 @@ const LogInSchema = yup.object().shape({
 
 export default function LogInModal({ open, close }) {
   const [loading, setLoading] = useState(false);
+  // true | false | null
   const [loginSuccess, setLoginSuccess] = useState(null);
   const [loginError, setLoginError] = useState('');
 
@@ -42,10 +43,15 @@ export default function LogInModal({ open, close }) {
   };
 
   const onSubmit = async (data) => {
+    const modifiedData = {
+      email: data.email.toLowerCase(),
+      password: data.password,
+    };
+
     setLoading(true);
 
     try {
-      const res = await axios.post('/signin', data);
+      const res = await axios.post('/signin', modifiedData);
 
       console.log(res);
 
