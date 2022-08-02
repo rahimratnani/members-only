@@ -1,5 +1,5 @@
 import SignUpModal from '../../components/SignUpModal.js';
-import LogInModal from '../../components/LogInModal.js';
+import LogInModal from '../../components/LogInModal/index.js';
 import MembershipModal from '../../components/MembershipModal.js';
 import { useContext, useState, useEffect } from 'react';
 import { ModalContext } from '../../context/ModalContext.js';
