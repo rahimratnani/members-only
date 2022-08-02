@@ -7,7 +7,7 @@ import { UserContext } from '../../context/UserContext.js';
 import axios from '../../lib/axios.js';
 import Spinner from './../../components/elements/Spinner.js';
 import Message from './Message.js';
-import Pagination from '../../components/Pagination.js';
+import Pagination from './Pagination.js';
 import Header from './Header.js';
 
 export default function Messages() {
