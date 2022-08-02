@@ -41,6 +41,7 @@ export default function SignUpModal({ open, close }) {
   // true | false | null
   const [signupSuccess, setSignupSuccess] = useState(null);
   const [signupError, setSignupError] = useState('');
+  const [errorCode, setErrorCode] = useState(0);
 
   const { setAuth } = useContext(UserContext);
 
@@ -54,11 +55,12 @@ export default function SignUpModal({ open, close }) {
   const handleOnClose = () => {
     close(false);
     setLoading(false);
-    setSignupError('');
 
     setTimeout(() => {
       reset();
       setSignupSuccess(null);
+      setSignupError('');
+      setErrorCode(0);
     }, 500);
   };
 
@@ -101,6 +103,7 @@ export default function SignUpModal({ open, close }) {
     } catch (error) {
       if (error.response.status === 409) {
         setSignupError('User already exists. Please login.');
+        setErrorCode(409);
       } else {
         setSignupError('Something went wrong.');
       }
@@ -110,60 +113,6 @@ export default function SignUpModal({ open, close }) {
       setLoading(false);
     }
   };
-
-  /* const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!userName || !email || !password || !confirmedPassword) {
-      return;
-    }
-
-    if (password !== confirmedPassword) {
-      return;
-    }
-
-    try {
-      setLoading(true);
-
-      const res = await axios.post('/signup', {
-        email,
-        name: userName,
-        password,
-      });
-
-      console.log(res);
-
-      const {
-        token,
-        _id,
-        name,
-        email: userEmail,
-        is_admin,
-        is_member,
-      } = res.data;
-
-      localStorage.setItem('token', token);
-
-      setAuth((prev) => ({
-        ...prev,
-        isAuth: true,
-        name,
-        email: userEmail,
-        is_member,
-        is_admin,
-        id: _id,
-      }));
-
-      setSignupSuccess(true);
-
-      setLoading(false);
-    } catch (error) {
-      // show error
-      console.error('Something went wrong', error.response);
-      setSignupSuccess(false);
-      setLoading(false);
-    }
-  }; */
 
   return (
     <Modal open={open} onClose={handleOnClose}>
@@ -182,6 +131,7 @@ export default function SignUpModal({ open, close }) {
             errors={errors}
             setSignupSuccess={setSignupSuccess}
             signupError={signupError}
+            errorCode={errorCode}
           />
         )}
       </div>

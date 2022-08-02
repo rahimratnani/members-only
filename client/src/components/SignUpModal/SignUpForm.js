@@ -11,6 +11,7 @@ export default function SignUpForm({
   errors,
   setSignupSuccess,
   signupError,
+  errorCode,
 }) {
   return signupSuccess ? (
     <div className="h-[250px] flex flex-col justify-center items-center space-y-5">
@@ -45,13 +46,23 @@ export default function SignUpForm({
       </div>
 
       <div className="flex justify-center items-center">
-        <button
-          type="button"
-          onClick={() => setSignupSuccess(null)}
-          className="relative inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-        >
-          Try Again
-        </button>
+        {errorCode === 409 ? (
+          <button
+            type="button"
+            onClick={handleOnClose}
+            className="relative inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          >
+            Close
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={() => setSignupSuccess(null)}
+            className="relative inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          >
+            Try Again
+          </button>
+        )}
       </div>
     </div>
   ) : (

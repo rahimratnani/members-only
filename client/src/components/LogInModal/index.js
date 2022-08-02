@@ -34,11 +34,11 @@ export default function LogInModal({ open, close }) {
   const handleOnClose = () => {
     close(false);
     setLoading(false);
-    setLoginError('');
 
     setTimeout(() => {
       reset();
       setLoginSuccess(null);
+      setLoginError('');
     }, 500);
   };
 
