@@ -9,8 +9,12 @@ import XIcon from './../assets/icons/XIcon.js';
 import ChevronRightIcon from '../assets/icons/ChevronRightIcon.js';
 
 export default function Navbar() {
-  const { setSignupModal, setLoginModal, setMembershipModal } =
-    useContext(ModalContext);
+  const {
+    setSignupModal,
+    setLoginModal,
+    setMembershipModal,
+    setNewMessageModal,
+  } = useContext(ModalContext);
   const {
     auth: { isAuth, is_member, name, email },
   } = useContext(UserContext);
@@ -63,6 +67,7 @@ export default function Navbar() {
                     ) : null}
 
                     <button
+                      onClick={() => setNewMessageModal(true)}
                       type="button"
                       className="hidden relative md:inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     >
@@ -161,6 +166,7 @@ export default function Navbar() {
             <Disclosure.Panel className="md:hidden">
               <div className="p-2 ml-3">
                 <button
+                  onClick={() => setNewMessageModal(true)}
                   type="button"
                   className="relative inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >

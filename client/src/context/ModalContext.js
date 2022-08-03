@@ -6,6 +6,7 @@ export default function ModalContextProvider({ children }) {
   const [signupModal, setSignupModal] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
   const [membershipModal, setMembershipModal] = useState(false);
+  const [newMessageModal, setNewMessageModal] = useState(false);
 
   const value = {
     signupModal,
@@ -14,6 +15,8 @@ export default function ModalContextProvider({ children }) {
     setLoginModal,
     membershipModal,
     setMembershipModal,
+    newMessageModal,
+    setNewMessageModal,
   };
 
   return (

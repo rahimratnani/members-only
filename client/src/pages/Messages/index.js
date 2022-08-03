@@ -1,6 +1,7 @@
 import SignUpModal from '../../components/SignUpModal/index.js';
 import LogInModal from '../../components/LogInModal/index.js';
 import MembershipModal from '../../components/MembershipModal/index.js';
+import NewMessageModal from '../../components/NewMessageModal/index.js';
 import { useContext, useState, useEffect } from 'react';
 import { ModalContext } from '../../context/ModalContext.js';
 import { UserContext } from '../../context/UserContext.js';
@@ -18,6 +19,8 @@ export default function Messages() {
     setLoginModal,
     membershipModal,
     setMembershipModal,
+    newMessageModal,
+    setNewMessageModal,
   } = useContext(ModalContext);
 
   const { auth } = useContext(UserContext);
@@ -85,6 +88,7 @@ export default function Messages() {
       <SignUpModal open={signupModal} close={setSignupModal} />
       <LogInModal open={loginModal} close={setLoginModal} />
       <MembershipModal open={membershipModal} close={setMembershipModal} />
+      <NewMessageModal open={newMessageModal} close={setNewMessageModal} />
     </div>
   );
 }
