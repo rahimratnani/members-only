@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getMany, createOne } from './message.controller.js';
+import { getMany, createOne, deleteOne } from './message.controller.js';
 import { protect } from './../../utils/auth.js';
 
 const router = Router();
@@ -12,6 +12,6 @@ router.route('/').get(getMany).post(protect, createOne);
 /* 
 /api/messages/:id
 */
-// router.route('/:id').get(getOne).put(updateOne).delete(deleteOne);
+router.route('/:id').delete(protect, deleteOne);
 
 export default router;

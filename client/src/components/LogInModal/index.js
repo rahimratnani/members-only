@@ -53,8 +53,6 @@ export default function LogInModal({ open, close }) {
     try {
       const res = await axios.post('/signin', modifiedData);
 
-      console.log(res);
-
       const {
         token,
         _id,

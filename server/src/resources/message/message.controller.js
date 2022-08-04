@@ -46,6 +46,30 @@ export const createOne = async (req, res, next) => {
   }
 };
 
-// export const updateOne = async () => {};
+export const deleteOne = async (req, res, next) => {
+  const { id } = req.params;
 
-// export const deleteOne = async () => {};
+  if (!id) {
+    return res.status(400).end();
+  }
+
+  if (!req?.user.is_admin) {
+    return res.status(401).json({ message: 'Not authorized.' });
+  }
+
+  try {
+    const deletedMsg = await Message.findOneAndRemove({
+      _id: id,
+    });
+
+    if (!deletedMsg) {
+      return res.status(400).end();
+    }
+
+    return res.status(200).json({ data: deletedMsg });
+  } catch (error) {
+    console.error(error);
+    res.status(500);
+    next(error);
+  }
+};

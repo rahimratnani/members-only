@@ -31,6 +31,8 @@ export default function Messages() {
   const [messages, setMessages] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
 
+  const [deleteMsgId, setDeleteMsgId] = useState('');
+
   const handlePageClick = (e) => {
     setPage(e.selected + 1);
   };
@@ -53,12 +55,42 @@ export default function Messages() {
     }
   }, []);
 
+  const handleDeleteMessage = async (id) => {
+    if (!id || !auth.is_admin) return;
+
+    const token = localStorage.getItem('token');
+
+    setDeleteMsgId(id);
+
+    try {
+      await axios.delete(`/api/messages/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      getMessages(page).finally(() => {
+        setLoading(false);
+        setDeleteMsgId('');
+      });
+    } catch (error) {
+      setDeleteMsgId('');
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     getMessages(page).finally(() => setLoading(false));
   }, [page, getMessages]);
 
   const messagesComponents = messages.map((message) => (
-    <Message key={message._id} message={message} auth={auth} />
+    <Message
+      key={message._id}
+      message={message}
+      auth={auth}
+      handleDeleteMessage={handleDeleteMessage}
+      deleteMsgId={deleteMsgId}
+    />
   ));
 
   return (

@@ -1,6 +1,11 @@
 import TrashIcon from '../../assets/icons/TrashIcon.js';
 
-export default function Message({ message, auth }) {
+export default function Message({
+  message,
+  auth,
+  handleDeleteMessage,
+  deleteMsgId,
+}) {
   return (
     <article className="border rounded-md p-6 shadow-md">
       <div className="flex justify-between items-center">
@@ -10,8 +15,9 @@ export default function Message({ message, auth }) {
 
         {auth?.isAuth && auth?.is_admin ? (
           <button
+            onClick={() => handleDeleteMessage(message?._id)}
             type="button"
-            disabled={false}
+            disabled={deleteMsgId === message?._id}
             className="rounded text-gray-700 p-1 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-inset disabled:cursor-not-allowed disabled:ring-2 disabled:ring-gray-400 disabled:text-gray-400"
           >
             <TrashIcon className="h-7 w-7" />
