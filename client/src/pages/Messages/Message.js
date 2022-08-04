@@ -11,7 +11,8 @@ export default function Message({ message, auth }) {
         {auth?.isAuth && auth?.is_admin ? (
           <button
             type="button"
-            className="rounded text-gray-700 p-1 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-inset"
+            disabled={false}
+            className="rounded text-gray-700 p-1 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-inset disabled:cursor-not-allowed disabled:ring-2 disabled:ring-gray-400 disabled:text-gray-400"
           >
             <TrashIcon className="h-7 w-7" />
           </button>

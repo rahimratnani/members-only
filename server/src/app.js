@@ -31,7 +31,7 @@ app.use('/api/users', protect, userRouter);
 app.use('/api/messages', messageRouter);
 
 app.get('/', (req, res) => {
-  res.status(200).json({ message: 'Express Boilerplate' });
+  res.status(200).json({ message: 'MembersOnly' });
 });
 
 // Handle 404

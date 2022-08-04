@@ -12,7 +12,14 @@ const MessageSchema = yup.object().shape({
   message: yup.string().required('No message provided.'),
 });
 
-export default function NewMessageModal({ open, close }) {
+export default function NewMessageModal({
+  open,
+  close,
+  getMessages,
+  stopMessagesSpinner,
+  setPage,
+  page,
+}) {
   const [loading, setLoading] = useState(false);
   // true | false | null
   const [messageSuccess, setMessageSuccess] = useState(null);
@@ -53,13 +60,18 @@ export default function NewMessageModal({ open, close }) {
         },
       });
 
-      /* if (res.status === 201) {
+      if (res.status === 201 && page === 1) {
+        getMessages(1).finally(() => stopMessagesSpinner());
+      } else if (res.status === 201) {
+        setPage(1);
+      } else {
+        return;
+      }
 
-      } */
-
-      console.log(res);
+      setMessageSuccess(true);
     } catch (error) {
       setMessageError('Something went wrong.');
+      setMessageSuccess(false);
     } finally {
       setLoading(false);
     }

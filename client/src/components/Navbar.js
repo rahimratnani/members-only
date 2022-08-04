@@ -16,7 +16,7 @@ export default function Navbar() {
     setNewMessageModal,
   } = useContext(ModalContext);
   const {
-    auth: { isAuth, is_member, name, email },
+    auth: { isAuth, is_member, is_admin, name, email },
   } = useContext(UserContext);
 
   const logout = useLogout();
@@ -139,7 +139,11 @@ export default function Navbar() {
                                 Membership status
                               </p>
                               <p className="capitalize text-base font-medium text-gray-900">
-                                {is_member ? 'Member' : 'Not A Member'}
+                                {is_admin
+                                  ? 'Admin'
+                                  : is_member
+                                  ? 'Member'
+                                  : 'Not A Member'}
                               </p>
                             </div>
                           </div>
@@ -188,7 +192,7 @@ export default function Navbar() {
                     Membership status
                   </p>
                   <p className="capitalize text-base font-medium text-gray-900">
-                    {is_member ? 'Member' : 'Not A Member'}
+                    {is_admin ? 'Admin' : is_member ? 'Member' : 'Not A Member'}
                   </p>
                 </div>
               </div>

@@ -14,7 +14,7 @@ const Next = () => (
   </button>
 );
 
-export default function Pagination({ handlePageClick, totalPages }) {
+export default function Pagination({ handlePageClick, totalPages, page }) {
   return (
     <div className="px-4 py-4 sm:px-6 lg:px-8 mt-12 mx-auto max-w-7xl flex items-center justify-center absolute left-0 right-0 bottom-0">
       <ReactPaginate
@@ -27,11 +27,11 @@ export default function Pagination({ handlePageClick, totalPages }) {
         onPageChange={handlePageClick}
         pageRangeDisplayed={2}
         marginPagesDisplayed={1}
+        forcePage={page - 1}
         pageCount={totalPages}
         previousLabel={<Previous />}
         renderOnZeroPageCount={null}
         containerClassName="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
-        // pageLinkClassName="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
         pageLinkClassName="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-3 sm:px-4 py-2 border text-sm font-medium"
         activeLinkClassName="z-10 bg-indigo-50 border-indigo-500 text-indigo-600"
       />

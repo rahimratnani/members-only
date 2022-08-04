@@ -9,7 +9,7 @@ export const getMany = async (req, res, next) => {
     // execute query with page and limit values
     const messages = await Message.find()
       .sort({ updatedAt: -1 })
-      .limit(limit * 1)
+      .limit(limit)
       .skip((page - 1) * limit)
       .populate('author', '-password');
 

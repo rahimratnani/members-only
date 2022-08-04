@@ -2,7 +2,7 @@ import SignUpModal from '../../components/SignUpModal/index.js';
 import LogInModal from '../../components/LogInModal/index.js';
 import MembershipModal from '../../components/MembershipModal/index.js';
 import NewMessageModal from '../../components/NewMessageModal/index.js';
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState, useEffect, useCallback } from 'react';
 import { ModalContext } from '../../context/ModalContext.js';
 import { UserContext } from '../../context/UserContext.js';
 import axios from '../../lib/axios.js';
@@ -29,33 +29,33 @@ export default function Messages() {
 
   const [page, setPage] = useState(1);
   const [messages, setMessages] = useState([]);
-  const [totalPages, setTotalPages] = useState(0);
+  const [totalPages, setTotalPages] = useState(1);
 
   const handlePageClick = (e) => {
     setPage(e.selected + 1);
   };
 
+  const getMessages = useCallback(async (page) => {
+    setLoading(true);
+
+    try {
+      const { data } = await axios.get('/api/messages', {
+        params: {
+          page,
+          limit: 10,
+        },
+      });
+
+      setMessages(data?.messages);
+      setTotalPages(data?.totalPages);
+    } catch (error) {
+      console.error(error);
+    }
+  }, []);
+
   useEffect(() => {
-    const getMessages = async () => {
-      setLoading(true);
-
-      try {
-        const { data } = await axios.get('/api/messages', {
-          params: {
-            page,
-            limit: 10,
-          },
-        });
-
-        setMessages(data?.messages);
-        setTotalPages(data?.totalPages);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    getMessages().finally(() => setLoading(false));
-  }, [page]);
+    getMessages(page).finally(() => setLoading(false));
+  }, [page, getMessages]);
 
   const messagesComponents = messages.map((message) => (
     <Message key={message._id} message={message} auth={auth} />
@@ -88,7 +88,14 @@ export default function Messages() {
       <SignUpModal open={signupModal} close={setSignupModal} />
       <LogInModal open={loginModal} close={setLoginModal} />
       <MembershipModal open={membershipModal} close={setMembershipModal} />
-      <NewMessageModal open={newMessageModal} close={setNewMessageModal} />
+      <NewMessageModal
+        open={newMessageModal}
+        close={setNewMessageModal}
+        getMessages={getMessages}
+        stopMessagesSpinner={() => setLoading(false)}
+        page={page}
+        setPage={setPage}
+      />
     </div>
   );
 }
