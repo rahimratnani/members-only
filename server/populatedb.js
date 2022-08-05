@@ -181,4 +181,6 @@ const seedDb = async () => {
   console.log('Messages created.');
 };
 
-seedDb().then(() => console.log('Done'));
+seedDb()
+  .then(() => console.log('Done'))
+  .catch(console.error);

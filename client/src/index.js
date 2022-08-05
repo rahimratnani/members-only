@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import ModalContextProvider from './context/ModalContext.js';
 import UserContextProvider from './context/UserContext.js';
 
@@ -13,7 +13,10 @@ root.render(
     <BrowserRouter>
       <UserContextProvider>
         <ModalContextProvider>
-          <App />
+          <Routes>
+            <Route path="/" element={<App />} />
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
         </ModalContextProvider>
       </UserContextProvider>
     </BrowserRouter>

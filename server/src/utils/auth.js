@@ -4,7 +4,9 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 const newToken = (user) => {
-  return jwt.sign({ id: user.id }, process.env.JWT_SECRET);
+  return jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
+    expiresIn: '1d',
+  });
 };
 
 const verifyToken = (token) => {
