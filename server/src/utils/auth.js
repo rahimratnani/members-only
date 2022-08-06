@@ -137,6 +137,11 @@ export const protect = async (req, res, next) => {
     next();
   } catch (error) {
     console.error(error);
+
+    if (error.message === 'jwt expired') {
+      return res.status(401).json({ message: 'Not authorized.' });
+    }
+
     res.status(500);
     next(error);
   }
