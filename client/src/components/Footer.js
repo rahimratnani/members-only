@@ -10,7 +10,9 @@ export default function Footer() {
       </span>
       <p>by Rahim Ratnani.</p>
       <a
-        href="##"
+        target="_blank"
+        rel="noreferrer"
+        href="https://github.com/rahimratnani/members-only"
         className="flex justify-center items-center space-x-2 hover:underline"
       >
         <span>GitHub</span>
