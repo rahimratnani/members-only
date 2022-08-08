@@ -1,5 +1,5 @@
 {
-  "name": "members-only",
+  "name": "members-only-server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -25,5 +25,8 @@
   "devDependencies": {
     "eslint": "^8.13.0",
     "nodemon": "^2.0.15"
+  },
+  "engines": {
+    "node": "16.16.0"
   }
 }
