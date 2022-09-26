@@ -1,8 +1,7 @@
 #!/usr/bin/env node
 
-// import 'dotenv/config';
-import app from './app.js';
-import { connect } from './utils/db.js';
+import app from './app';
+import { connect } from './utils/db';
 
 const port = process.env.PORT || 3000;
 

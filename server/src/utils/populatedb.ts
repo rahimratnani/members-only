@@ -1,15 +1,23 @@
 import 'dotenv/config';
 import mongoose from 'mongoose';
-import User from './src/resources/user/user.model.js';
-import Message from './src/resources/message/message.model.js';
+import User from '../resources/user/user.model.js';
+import Message from '../resources/message/message.model.js';
 
-await mongoose.connect(process.env.DB_URL);
+// await mongoose.connect(process.env.DB_URL);
 
 // Test@123
-const COMMON_PASSWORD =
+const COMMON_PASSWORD: string =
   '$2a$10$AavMM60KdTNEacYQI.vWYeOwKVqDimBiAxfU/S3EHxdLd0srJSBfm';
 
-const users = [
+type UserType = {
+  name: string;
+  email: string;
+  password: string;
+  is_member?: boolean;
+  is_admin?: boolean;
+};
+
+const users: UserType[] = [
   {
     name: 'rahim',
     email: 'rahim@gmail.com',
@@ -50,7 +58,12 @@ const users = [
   },
 ];
 
-const messages = [
+type MessageType = {
+  title: string;
+  message: string;
+};
+
+const messages: MessageType[] = [
   {
     title: `Message ${Math.floor(Math.random() * (10000 - 1 + 1)) + 1}`,
     message: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere pariatur magnam, doloribus dolor earum repellendus? Minus dolor alias, atque sit officia facilis consectetur! Aliquam quia saepe dolor corporis animi laborum autem! Maxime inventore placeat assumenda porro magni saepe ad deleniti.`,
@@ -130,7 +143,7 @@ const messages = [
 ];
 
 const createUsers = async () => {
-  const promises = [];
+  const promises: Promise<any>[] = [];
 
   users.forEach((user) => {
     promises.push(User.create({ ...user }));
@@ -139,14 +152,19 @@ const createUsers = async () => {
   return await Promise.all(promises);
 };
 
-function addOneDay(date) {
+function addOneDay(date: Date) {
   const tomorrow = date;
   tomorrow.setDate(tomorrow.getDate() + 1);
   return tomorrow;
 }
 
-const createMessages = async (usersArray) => {
-  const promises = [];
+interface UserObj {
+  id: string;
+}
+
+const createMessages = async (usersArray: UserObj[]) => {
+  const promises: Promise<any>[] = [];
+
   let currentDate = new Date(2022, 0, 1);
 
   usersArray.forEach((user) => {
@@ -167,6 +185,8 @@ const createMessages = async (usersArray) => {
 };
 
 const seedDb = async () => {
+  await mongoose.connect(process.env.DB_URL!);
+
   // Drop existing collections
   await mongoose.connection.db.dropCollection('users');
   console.log('Collection users is dropped.');
