@@ -2,7 +2,7 @@ import User from './../resources/user/user.model.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { HydratedDocument } from 'mongoose';
-import { IUser } from '../resources/user/interfaces.js';
+import { IUser } from '../resources/user/user.types';
 import { Request, Response, NextFunction } from 'express';
 
 const JWT_SECRET = process.env.JWT_SECRET!;
