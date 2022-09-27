@@ -140,7 +140,11 @@ export const protect = async (
   try {
     const payload = await verifyToken(token);
 
-    const user = await User.findById(payload.id)
+    if (!payload) {
+      return res.status(401).json({ message: 'Not authorized.' });
+    }
+
+    const user = await User.findById((payload as any).id)
       .select('-password')
       .lean()
       .exec();
@@ -149,7 +153,7 @@ export const protect = async (
       return res.status(401).json({ message: 'Not authorized.' });
     }
 
-    req.user = user;
+    (req as any).user = user;
 
     next();
   } catch (error) {
