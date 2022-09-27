@@ -159,7 +159,7 @@ export const protect = async (
   } catch (error) {
     console.error(error);
 
-    if (error.message === 'jwt expired') {
+    if (error instanceof Error && error.message === 'jwt expired') {
       return res.status(401).json({ message: 'Not authorized.' });
     }
 

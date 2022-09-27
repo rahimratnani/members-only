@@ -7,7 +7,7 @@ import cors from 'cors';
 
 import userRouter from './resources/user/user.router.js';
 import messageRouter from './resources/message/message.router.js';
-import { signup, signin, protect } from './utils/auth.js';
+import { signup, signin, protect } from './utils/auth';
 
 const app = express();
 
