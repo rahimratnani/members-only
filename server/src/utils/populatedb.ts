@@ -1,9 +1,6 @@
-import 'dotenv/config';
 import mongoose from 'mongoose';
 import User from '../resources/user/user.model.js';
 import Message from '../resources/message/message.model.js';
-
-// await mongoose.connect(process.env.DB_URL);
 
 // Test@123
 const COMMON_PASSWORD: string =

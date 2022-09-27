@@ -1,17 +1,21 @@
-import 'dotenv/config';
 import User from './../resources/user/user.model.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import { HydratedDocument } from 'mongoose';
+import { IUser } from '../resources/user/interfaces.js';
+import { Request, Response, NextFunction } from 'express';
 
-const newToken = (user) => {
-  return jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
+const JWT_SECRET = process.env.JWT_SECRET!;
+
+const newToken = (user: HydratedDocument<IUser>) => {
+  return jwt.sign({ id: user.id }, JWT_SECRET, {
     expiresIn: '1d',
   });
 };
 
-const verifyToken = (token) => {
+const verifyToken = (token: string) => {
   return new Promise((resolve, reject) => {
-    jwt.verify(token, process.env.JWT_SECRET, (error, payload) => {
+    jwt.verify(token, JWT_SECRET, (error, payload) => {
       if (error) return reject(error);
 
       resolve(payload);
@@ -19,15 +23,19 @@ const verifyToken = (token) => {
   });
 };
 
-const checkPassword = async (passwordHash, password) => {
+const checkPassword = async (passwordHash: string, password: string) => {
   try {
     return await bcrypt.compare(password, passwordHash);
   } catch (error) {
-    throw new Error(error);
+    throw error;
   }
 };
 
-export const signup = async (req, res, next) => {
+export const signup = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { name, email, password } = req.body;
 
   if (!req.body.name || !req.body.email || !req.body.password) {
@@ -48,7 +56,7 @@ export const signup = async (req, res, next) => {
     const encryptedPassword = await bcrypt.hash(password, 10);
 
     // Create user
-    const user = await User.create({
+    const user: HydratedDocument<IUser> = await User.create({
       name,
       email: email.toLowerCase(),
       password: encryptedPassword,
@@ -57,7 +65,8 @@ export const signup = async (req, res, next) => {
     // Create token
     const token = newToken(user);
 
-    const updatedUser = user.toObject();
+    const updatedUser: { [key: string]: any } = user.toObject();
+
     delete updatedUser.password;
 
     return res.status(201).json({
@@ -71,7 +80,11 @@ export const signup = async (req, res, next) => {
   }
 };
 
-export const signin = async (req, res, next) => {
+export const signin = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
@@ -109,7 +122,11 @@ export const signin = async (req, res, next) => {
   }
 };
 
-export const protect = async (req, res, next) => {
+export const protect = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   if (!req.headers.authorization) {
     return res.status(401).json({ message: 'Not authorized.' });
   }
