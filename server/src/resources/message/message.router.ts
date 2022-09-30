@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getMany, createOne, deleteOne } from './message.controller.js';
+import { getMany, createOne, deleteOne } from './message.controller';
 import { protect } from './../../utils/auth';
 
 const router = Router();

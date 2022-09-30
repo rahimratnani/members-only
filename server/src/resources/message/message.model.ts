@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
+import { IMessage } from './message.types';
 
-const messageSchema = new mongoose.Schema(
+const messageSchema = new mongoose.Schema<IMessage>(
   {
     title: {
       type: String,
@@ -23,4 +24,4 @@ const messageSchema = new mongoose.Schema(
   }
 );
 
-export default mongoose.model('Message', messageSchema);
+export default mongoose.model<IMessage>('Message', messageSchema);

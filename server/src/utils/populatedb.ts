@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
-import User from '../resources/user/user.model.js';
-import Message from '../resources/message/message.model.js';
+import User from '../resources/user/user.model';
+import Message from '../resources/message/message.model';
 
 // Test@123
 const COMMON_PASSWORD: string =

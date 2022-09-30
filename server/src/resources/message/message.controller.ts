@@ -1,9 +1,26 @@
-import Message from './message.model.js';
+import Message from './message.model';
+import { Request, Response, NextFunction } from 'express';
 
-// export const getOne = async () => {};
+export const getMany = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  if (!req.query.page || !req.query.limit) {
+    return res
+      .status(404)
+      .json({ error: 'Page or limit parameter not found.' });
+  }
 
-export const getMany = async (req, res, next) => {
-  const { page = 1, limit = 10 } = req.query;
+  if (
+    typeof req.query.page !== 'string' ||
+    typeof req.query.limit !== 'string'
+  ) {
+    return res.status(500).json({ error: 'Invalid page or limit type.' });
+  }
+
+  const page: number = Number(req.query.page);
+  const limit: number = Number(req.query.limit);
 
   try {
     // execute query with page and limit values
@@ -28,7 +45,11 @@ export const getMany = async (req, res, next) => {
   }
 };
 
-export const createOne = async (req, res, next) => {
+export const createOne = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { title, message } = req.body;
 
   if (!title || !message) {
@@ -46,7 +67,11 @@ export const createOne = async (req, res, next) => {
   }
 };
 
-export const deleteOne = async (req, res, next) => {
+export const deleteOne = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { id } = req.params;
 
   if (!id) {

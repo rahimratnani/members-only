@@ -1,4 +1,4 @@
-import User from './../resources/user/user.model.js';
+import User from './../resources/user/user.model';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { HydratedDocument } from 'mongoose';
@@ -109,7 +109,7 @@ export const signin = async (
     const token = newToken(user);
 
     const updatedUser = user.toObject();
-    delete updatedUser.password;
+    delete (updatedUser as any).password;
 
     return res.status(201).json({
       token,
