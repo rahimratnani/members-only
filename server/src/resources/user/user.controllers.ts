@@ -1,10 +1,15 @@
-import User from './user.model.js';
+import User from './user.model';
+import { Request, Response, NextFunction } from 'express';
 
-export const me = (req, res) => {
+export const me = (req: Request, res: Response) => {
   res.status(200).json({ user: req.user });
 };
 
-export const updateMe = async (req, res, next) => {
+export const updateMe = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const SECRET = process.env.MEMBERSHIP_CODE;
 
   try {

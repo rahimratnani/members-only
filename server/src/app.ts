@@ -1,13 +1,13 @@
 import express from 'express';
 import morgan from 'morgan';
-import errorHandler from './utils/error-handler.js';
+import errorHandler from './utils/error-handler';
 import helmet from 'helmet';
 import compression from 'compression';
 import cors from 'cors';
 
-import userRouter from './resources/user/user.router.js';
-import messageRouter from './resources/message/message.router.js';
-import { signup, signin, protect } from './utils/auth.js';
+import userRouter from './resources/user/user.router';
+import messageRouter from './resources/message/message.router';
+import { signup, signin, protect } from './utils/auth';
 
 const app = express();
 
