@@ -1,6 +1,11 @@
 import { Request, Response, NextFunction } from 'express';
 
-const errorHandler = (err: any, req: Request, res: Response) => {
+const errorHandler = (
+  err: any,
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const statusCode = res.statusCode || 500;
 
   res.status(statusCode);
