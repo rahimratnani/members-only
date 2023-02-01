@@ -34,7 +34,7 @@ I created this project mainly to practice full-stack development with a focus on
 # Clone this repository
 $ git clone git@github.com:rahimratnani/members-only.git
 
-# Go into the reposit
+# Go into the repository
 $ cd members-only
 ```
 
