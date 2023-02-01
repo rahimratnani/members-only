@@ -2,7 +2,7 @@
 
 ![Screenshot](./screenshot.png)
 
-**:key: Secret Code (case-sensitive):** The Odin Project
+**:key: Secret Code (case-sensitive):** `The Odin Project`
 
 **:point_right: See it live [here](https://members-only-top.netlify.app/)**
 
