@@ -103,8 +103,6 @@ $ npm start
 - [Tailwind CSS](https://tailwindcss.com/)
 - [React Hook Form](https://react-hook-form.com/)
 
----
-
 ## License
 
 <a href="https://github.com/rahimratnani/members-only/blob/main/LICENSE">
