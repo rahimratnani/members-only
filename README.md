@@ -1,28 +1,104 @@
-<p align="center">
-  <a href="https://members-only-top.netlify.app/">
-    <h1 align="center">Members Only</h1>
-  </a>
-</p>
+# Members Only
 
-Members Only is an exclusive clubhouse where anyone can come and see the messages but only logged-in users can write new messages. To see who created the message and when users have to get the membership by entering a SECRET code (which you can find at the end of this README). Users can check their membership status in the navigation menu. There's also an admin who can see all the messages with author, date, and time but can also delete the messages.
+![Screenshot](./screenshot.png)
 
-This is a fun project I created mainly to practice full-stack development with a focus on authentication and user permissions management. I've written the server-side application using ExpressJS because it's an unopinionated and low-level web framework with simple API. It allows you to organize your application the way you want while making it more extensible.
+**:key: Secret Code (case-sensitive):** The Odin Project
 
-While a relational database is a good choice and a pretty strong all-rounder, I decided to go with MongoDB, mainly because I learned it recently and wanted to build something using it. Being a document type and non-relational database, MongoDB combined with Mongoose, an ODM, can provide many benefits of a relational database while also being faster than traditional options.
+**:point_right: See it live [here](https://members-only-top.netlify.app/)**
 
-I use ReactJS for almost all my personal projects so it was a no-brainer for me. Tailwind CSS is a utility-first and low-level CSS framework with no built-in design system. I fell in love with it since I started using it and trust me, you wouldn't want to go back to writing vanilla CSS once you start using it.
+Members Only is an exclusive clubhouse where anyone can come and see the messages but only logged-in users can write new messages. To see who created the message and when users have to get the membership by entering a SECRET code. Users can check their membership status in the navigation menu. There's also an admin who can see all the messages with author, date, and time, and can also delete the messages.
 
-Client application is deployed on [Netlify](https://www.netlify.com/) and server application on [Heroku](https://heroku.com). You can see and test the application running live **[here](https://members-only-top.netlify.app/).**
+I created this project mainly to practice full-stack development with a focus on authentication and user permissions management.
 
 ## Features
 
+- Create and Read public messages.
 - User authentication with JWTs (JSON Web Token).
 - User authorization and permissions management (Admin, member, and non-member but registered user).
 - Server side APIs are written using REST architecture.
 - Securing passwords using bcryptjs.
-- Client side form validation using react-hook-form before submitting user data.
+- Membership by entering a secret code.
 - Schema validation using Mongoose.
+- Client side form validation using react-hook-form before submitting user data.
 
----
+## Run It Locally
 
-**SECRET:** The Odin Project
+### Prerequisites
+
+- You'll need a running MongoDB instance, either locally or deployed in the cloud. You can deploy one easily following this [documentation](https://www.mongodb.com/docs/atlas/getting-started/).
+- Nodejs version `16.17.0` or above.
+
+### Cloning the repository
+
+```bash
+# Clone this repository
+$ git clone git@github.com:rahimratnani/members-only.git
+
+# Go into the reposit
+$ cd members-only
+```
+
+### Getting the client ready
+
+From `members-only` directory run the following commands.
+
+```bash
+# Go to client directory
+$ cd client
+
+# Install dependencies
+$ npm install
+```
+
+### Getting the server ready
+
+If you're in `client` directory, change back to `members-only` by running `cd ..`. From `members-only` directory run the following commands.
+
+```bash
+# Go to server directory
+$ cd server
+
+# Install dependencies
+$ npm install
+```
+
+### Setting up environment variables
+
+- Rename `.env.example` files located in `client` and `server` directories to `.env`.
+- Populate `.env` located in server with the following environment variables:
+  - `PORT`: Your node server will run on this port. Default is 3001. If you want to use a different port, make sure to update it in client's `.env` file.
+  - `NODE_ENV`: Default is `development`.
+  - `DB_URL`: Update the placeholders with your running MongoDB instance's data.
+  - `JWT_SECRET`: A string that will be used to sign JWT tokens. Make sure it's hard and complicated enough to guess.
+  - `MEMBERSHIP_CODE`: The secret code you want user to enter to get membership.
+- Update the environment variables and save the file.
+
+### Starting the application
+
+From `members-only` directory, run the following commands:
+
+```bash
+# Go to server directory
+$ cd server
+
+# Start the server
+$ npm run dev
+
+# Open another terminal tab
+# Go to client directory
+$ cd ../client
+
+# Start the client
+$ npm start
+```
+
+## Technologies Used
+
+- [Nodejs](https://nodejs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Expressjs](https://expressjs.com/)
+- [MongoDB](https://www.mongodb.com/)
+- [Mongoosejs](https://mongoosejs.com/)
+- [Reactjs](https://reactjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [React Hook Form](https://react-hook-form.com/)
