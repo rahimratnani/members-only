@@ -102,3 +102,9 @@ $ npm start
 - [Reactjs](https://reactjs.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [React Hook Form](https://react-hook-form.com/)
+
+## License
+
+<a href="https://github.com/rahimratnani/members-only/blob/main/LICENSE">
+    <img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square" alt="MIT License">
+</a>
