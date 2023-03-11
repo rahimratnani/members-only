@@ -16,13 +16,6 @@ type UserType = {
 
 const users: UserType[] = [
   {
-    name: 'rahim',
-    email: 'rahim@gmail.com',
-    password: COMMON_PASSWORD,
-    is_member: true,
-    is_admin: true,
-  },
-  {
     name: 'ross',
     email: 'ross@gmail.com',
     password: COMMON_PASSWORD,
