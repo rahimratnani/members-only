@@ -92,6 +92,21 @@ export default function MembershipForm({
             </button>
           </div>
         </form>
+
+        <div className="pt-4 border-t">
+          <p className="text-gray-500 text-sm">
+            Secret code can be found{' '}
+            <a
+              href="https://github.com/rahimratnani/members-only/blob/main/README.md"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-700 font-medium underline"
+            >
+              here
+            </a>
+            .
+          </p>
+        </div>
       </div>
 
       <div className="flex justify-center items-center absolute right-4 top-4">
