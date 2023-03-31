@@ -78,7 +78,7 @@ export default function MembershipModal({ open, close }) {
     <Modal open={open} onClose={handleOnClose}>
       <div className="bg-white py-9 px-4 sm:px-10 w-80 sm:w-[28rem] rounded-md relative">
         {loading ? (
-          <div className="flex justify-center items-center h-[150px]">
+          <div className="flex justify-center items-center h-[189px]">
             <Spinner />
           </div>
         ) : (
