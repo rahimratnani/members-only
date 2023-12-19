@@ -43,7 +43,7 @@ export default function Message({
         </div>
       ) : null}
 
-      <div className="pt-4 text-gray-900 text-base">
+      <div className="pt-4 text-gray-900 text-base break-words">
         <p>
           {message?.message
             ? message.message[0].toUpperCase() + message.message.slice(1)
